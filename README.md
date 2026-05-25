@@ -1,2 +1,2 @@
 # 3dWeb3-
-An interactive digital portfolio featuring a custom Blender model and a Solidity smart contract. This full-stack website showcases a blend of creative and technical skills tailored for the Web3 and Web 4.0 era.
+An interactive digital businesscard featuring a custom Blender model and a Solidity smart contract. This full-stack website showcases a blend of creative and technical skills tailored for the Web3 and Web 4.0 era.
