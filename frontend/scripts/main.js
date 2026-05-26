@@ -37,7 +37,7 @@ controls.autoRotateSpeed = 1.0;
 const loader = new GLTFLoader();
 
 // IMPORTANT: This looks inside the 'digitalassets' folder!
-loader.load('../digitalassets/model.glb', function (gltf) {
+loader.load('digitalassets/techjcorpcardasset.glb', function (gltf) {
     const model = gltf.scene;
     model.position.set(0, 0, 0);
     scene.add(model);
