@@ -1,0 +1,16 @@
+# Remix IDE dependencies (auto-downloaded, not source code)
+.deps/
+
+# Remix/Hardhat build artifacts
+artifacts/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Node
+node_modules/

@@ -1,20 +1,25 @@
-html,
-body {
+/* ═══════════════════════════════════════════
+   Base
+═══════════════════════════════════════════ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
     margin: 0;
     padding: 0;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: #1a1a1a;
-
+    background-color: #0d0d0d;
     font-family: "IBM Plex Mono", monospace;
-    font-weight: 100;
-    font-style: normal;
-
-    color: #00ff00;
-
+    font-weight: 400;
+    color: #00ff88;
 }
 
+/* ═══════════════════════════════════════════
+   3D Canvas Stage (background layer)
+═══════════════════════════════════════════ */
 #stage {
     position: absolute;
     top: 0;
@@ -24,13 +29,96 @@ body {
     z-index: 1;
 }
 
+/* ═══════════════════════════════════════════
+   UI Overlay (above the 3D canvas)
+═══════════════════════════════════════════ */
+#ui-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+    /* subtle dark gradient so text is readable over the 3D model */
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #00ff88;
+    text-shadow: 0 0 18px rgba(0, 255, 136, 0.6);
+}
+
+/* ═══════════════════════════════════════════
+   Mint Button
+═══════════════════════════════════════════ */
+#mintButton {
+    padding: 0.75rem 2.2rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    background: #00ff88;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 0 16px rgba(0, 255, 136, 0.45);
+}
+
+#mintButton:hover:not(:disabled) {
+    background: #00ffaa;
+    box-shadow: 0 0 28px rgba(0, 255, 136, 0.75);
+    transform: translateY(-1px);
+}
+
+#mintButton:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+#mintButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════
+   Status Message
+═══════════════════════════════════════════ */
+#status {
+    margin: 0;
+    font-size: 0.9rem;
+    min-height: 1.4em;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+/* Status type classes set by app.js */
+#status.status-info    { color: #aaa; }
+#status.status-pending { color: #f5c842; }
+#status.status-success { color: #00ff88; text-shadow: 0 0 10px rgba(0,255,136,0.5); }
+#status.status-error   { color: #ff4d4d; text-shadow: 0 0 10px rgba(255,77,77,0.4); }
+
+/* ═══════════════════════════════════════════
+   Footer (optional)
+═══════════════════════════════════════════ */
 footer {
     position: absolute;
-    bottom: 20px;
+    bottom: 8px;
     width: 100%;
     text-align: center;
     z-index: 10;
-    font-size: 0.9rem;
-    opacity: 0.7;
+    font-size: 0.75rem;
+    opacity: 0.4;
     pointer-events: none;
 }
