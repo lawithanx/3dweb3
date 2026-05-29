@@ -1,0 +1,25 @@
+{
+  "name": "JCorp Digital Business Card",
+  "description": "A soulbound 3D digital business card minted on the JCorp platform. One per wallet. Non-transferable.",
+  "image": "ipfs://bafkreihngafwp3szmbw24j3y75obsre334ouf7ocs4dhbte5mjepps6q3i",
+  "animation_url": "ipfs://bafybeif53spizz7mah3bj2lo2m2ksufci2ubjuel2jsawvcvazf6shugcu",
+  "external_url": "https://jcorp.xyz",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Business Card"
+    },
+    {
+      "trait_type": "Format",
+      "value": "3D"
+    },
+    {
+      "trait_type": "Edition",
+      "value": "Genesis"
+    },
+    {
+      "trait_type": "Transferable",
+      "value": "No"
+    }
+  ]
+}

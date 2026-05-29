@@ -15,7 +15,7 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
 scene.add(ambientLight);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 5;
+camera.position.z = 5; // updated after model loads
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -36,11 +36,44 @@ controls.autoRotateSpeed = 1.0;
 // ==========================================
 const loader = new GLTFLoader();
 
-// IMPORTANT: This looks inside the 'digitalassets' folder!
 loader.load('digitalassets/techjcorpcardasset.glb', function (gltf) {
     const model = gltf.scene;
-    model.position.set(0, 0, 0);
     scene.add(model);
+
+    // Traverse every mesh in the GLTF scene to get a true bounding box
+    const box = new THREE.Box3();
+    model.traverse(function (child) {
+        if (child.isMesh) {
+            child.geometry.computeBoundingBox();
+            const childBox = child.geometry.boundingBox.clone();
+            childBox.applyMatrix4(child.matrixWorld);
+            box.union(childBox);
+        }
+    });
+
+    // Centre the model on the origin
+    const centre = new THREE.Vector3();
+    box.getCenter(centre);
+    model.position.sub(centre);
+
+    // Recompute box after centering
+    const size = new THREE.Vector3();
+    box.getSize(size);
+    const maxDim = Math.max(size.x, size.y, size.z);
+
+    // Pull camera back far enough to see the whole model
+    const fovRad = THREE.MathUtils.degToRad(camera.fov / 2);
+    const fitDistance = (maxDim / 2) / Math.tan(fovRad) * 2.5;
+
+    camera.position.set(0, 0, fitDistance);
+    camera.near = fitDistance / 100;
+    camera.far  = fitDistance * 100;
+    camera.updateProjectionMatrix();
+    controls.target.set(0, 0, 0);
+    controls.minDistance = fitDistance * 0.5;
+    controls.maxDistance = fitDistance * 5;
+    controls.update();
+
 }, undefined, function (error) {
     console.error('Error loading the model:', error);
 });

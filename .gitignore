@@ -12,5 +12,9 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Environment variables (private keys, RPC URLs)
+.env
+.env.*
+
 # Node
 node_modules/
