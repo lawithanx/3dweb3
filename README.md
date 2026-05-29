@@ -1,9 +1,9 @@
-# 3dWeb3-
+# Tech-Jcorp Business card NFT
+# Designed the brand Identity of Tech-Jcorp
+# Created a business card
+# made 3d model of this card
+# staged it in a website with three.js
 
-> **🚧 Note:** This project is still in active development.
-An interactive digital businesscard featuring a custom Blender model and a Solidity smart contract. This full-stack website showcases a blend of creative and technical skills tailored for the Web3 and Web 4.0 era.
-
-User will be able to mint a sole bound token
 
 ### Tech Stack
 - Vanilla Three.js 
